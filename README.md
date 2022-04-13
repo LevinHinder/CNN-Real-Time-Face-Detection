@@ -4,21 +4,6 @@
 This program simulates the maximum flow through a network with the [push-relabel maximum flow algorithm](https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm).
 
 
-## Project Structure
-
-The project has the following structure:
-
-    CNN-Real-Time-Face-Detection
-    ├───dataset
-    │   ├───me
-    │   └───not me
-    ├───models
-    │   train.py
-    │   release.py
-    │   LICENCE
-    └   README.md
-
-
 
 ## License
 
