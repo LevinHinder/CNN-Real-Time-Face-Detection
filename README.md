@@ -1,6 +1,5 @@
 # CNN Real Time Face Detection
 
-## Introduction
 This program simulates the maximum flow through a network with the [push-relabel maximum flow algorithm](https://en.wikipedia.org/wiki/Push%E2%80%93relabel_maximum_flow_algorithm).
 
 
