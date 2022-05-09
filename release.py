@@ -8,30 +8,25 @@ model_name = "face_classifier 2.1.2.h5"
 
 
 def get_face_image(image, x, y, side_length, scale):
-    scale_top = [scale] * 2
-    scale_bottom = [scale] * 2
+    left = x
+    top = y
+    right = len(image[0]) - x - side_length
+    bottom = len(image) - y - side_length
 
-    if x - scale * side_length < 0:
-        scale_top[0] = x / side_length
-    if y - scale * side_length < 0:
-        scale_top[1] = y / side_length
-    if (x + side_length) + scale * side_length > len(image[0]):
-        scale_bottom[0] = (len(image[0]) - (x + side_length)) / side_length
-    if (y + side_length) + scale * side_length < len(image):
-        scale_bottom[1] = (len(image) - (y + side_length)) / side_length
+    scale_left = left / side_length
+    scale_top = top / side_length
+    scale_right = right / side_length
+    scale_bottom = bottom / side_length
 
-    scale_top = min(scale_top)
-    scale_bottom = min(scale_bottom)
+    scale_topleft = min(scale, scale_left, scale_top)
+    scale_bottomright = min(scale, scale_right, scale_bottom)
 
-    start_x = int(x - scale_top * side_length)
-    end_x = int((x + side_length) + scale_bottom * side_length)
-    start_y = int(y - scale_top * side_length)
-    end_y = int((y + side_length) + scale_bottom * side_length)
+    start_x = math.floor(x - scale_topleft * side_length + 0.5)
+    end_x = math.floor((x + side_length) + scale_bottomright * side_length + 0.5)
+    start_y = math.floor((y - scale_topleft * side_length) + 0.5)
+    end_y = math.floor((y + side_length) + scale_bottomright * side_length + 0.5)
 
     image = image[start_y:end_y, start_x:end_x]
-    image = cv2.resize(image, IMAGE_SIZE)
-    '''cv2.imshow("MeNotMe", face_image)'''
-    image = np.expand_dims(image, axis=0)
     return image
 
 
